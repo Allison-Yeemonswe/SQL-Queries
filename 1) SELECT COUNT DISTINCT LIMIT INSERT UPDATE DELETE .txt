@@ -1,0 +1,161 @@
+Using SELECT statement to retrieve data from the table
+
+FROM COUNTRY TABLE
+
+Q1 : To retrieve all columns from the COUNTRY table
+A1 : select * from COUNTRY;
+
+Q2 : To retrieve data for all rows in the COUNTRY table where the ID is less than 5
+A2 : select * from COUNTRY where ID < 5;
+
+Q3 : To retrieve the data for the country with countrycode "CA"
+A3 : **select * from COUNTRY where CCOde = "CA";**
+
+*charactered based columns enclosed single quotes
+
+FROM SanFrancisco Film Locations TABLE
+
+Q1 : Retrieve all records with all columns from the "FilmLocations" table
+A1 : select * from FilmLocations;
+
+Q2 : Retrieve the names of all films with director names and writer names
+A2 : select Title, Director, Writer from FilmLocations;
+
+Q3 : Retrieve the names of all films released in the 21st century and onwards(release years after
+2001 including 2001), along with filming locations and release years
+A3 : select Title, Locations, ReleaseYear from FilmLocations where ReleaseYear >= 2001;
+
+Q4 : Retrieve the fun facts and filming locations of all films
+A4 : select FunFacts, Locations from FilmlLocations;
+
+Q5: Retrieve the names of all films released in the 20th century and before(release years before 2000
+including 2000) that, along with filming locations and release years
+A5 : select Title, Locations, ReleaseYear from FilmLocations where ReleaseYear <=2000;
+
+Q6 : Retrieve the names, production company names, filming locations, and release years of the films
+which are not written by James Cameron
+A6 : select Title, ProductionCompany, Locations, ReleaseYear from FilmLocations where writer <> "James Cameron";
+
+COUNT
+
+COUNT - An aggregate function that retrieve the number of rows
+
+Q1 : Retrieve the number of rows in the filmlocations table
+A1 : select COUNT(*) from FilmLocations;
+
+Q2 : Retrieve the number of locations of the films which are written by James Cameron
+A2 : select COUNT(Location) from FilmLocations where writer = "James Cameron";
+
+Q3 : Retrieve the number of locations of the films which are directed by Woody Allen
+A3 : select COUNT(Locations) from FilmLocations where Director = "Woody Allen";
+
+Q4 : Retrieve the number of films shot at Russian Hill
+A4 : select COUNT(Title) from FilmLocations where Locations = "Russian Hill";
+
+Q5 : Retrieve the number of rows having a release year older than 1950 from the filmlocations table
+A5 : select COUNT(*) from FilmLocations where ReleaseYear < 1950;
+
+DISTINCT
+
+DISTINCT - Remove duplicae values from a result set and return a unique value
+
+Q1 : Retrieve all the name of films without any repeated titles
+A1 : select DISTINCT(Title) from FilmLocations;
+
+Q2 : Retrieve the number of release years of the films distinctly, produced by Warner Bros.Picture
+A2 : select COUNT (DISTINCT ReleaseYear) from filmLocations where ProductionComapany = "Warner Bros.Picture";
+
+Q3 : Retrieve the name of all unique films released in the 21st century and onwards, along with their release years
+A3 : select DISTINCT Title, ReleaseYear from FilmLocations where Releaseyear >= 2001;
+
+Q4 : Retrieve the name of all the directors and their distinct films shot at City Hall
+A4 : select DISTINCT Title, Director from FilmLocations where Locations = "City Hall";
+
+Q5 : Retrieve the number of distributors distinctly who distributed films acted by Clint Eastwood as 1st actor
+A5 : select COUNT(DISTINCT Distributors) from FilmLocaions where Actor1 = "Clint East Wood";
+
+LIMIT
+
+LIMIT - Restrict the number of rows retrieved in the table
+
+Q1 : Retrieve the first 25 rows from the FilmLocations table
+A1 : select * from FilmLocations LIMIT 25;
+
+Q2 : Retrieve the first 15 rows from the FilmLocations table starting fom row 11
+A2 : select * from FilmLocations LIMIT 15 OFFSET 10;
+
+Q3 : Retrieve the name of first 50 films distinctly
+A3 : select DISTINCT Title from FilmLocations LIMIT 50;
+
+Q4 : Retrieve first 10 films names distinctly released in 2015
+A4 : select DISTINCT Title from FilmLocations where ReleaseYear = 2015 LIMIT 10;
+
+Q5 : Retrieve the next 3 films names distinctly after first 5 films released in 2015
+A5 : select  DISTINCT Tile from FilmLocations where ReleaseYear = 2015 LIMIT 3 OFFSE 5;
+
+INSERT
+
+INSERT - which is used to insert new rows in the table
+
+Syntax of INSERT statement
+
+INSERT INTO table_name (column1, column2,...)
+VALUES (value1, value2, ...)
+;
+
+FROM Instructor TABLE 
+
+select * from Instructor;
+
+Q1 : Insert anew instructor record with id 4 for Sandip Saha who lives in Edmonton,Ca into the "Instructor" table
+A1 : Insert INTO INstructor(ins_id, last name, first name, city, country)
+     VALUES (4, 'Saha', 'Sandip', 'Edmonton', 'CA'); 
+
+Q2 : Insert two new instructor records into the "Instructor" table. First record with id 5 for John Doe who lives in 
+     Sydney,AU. Second record with id6 for Jane Doe who lives in Dhaka,BD.
+A2 : Insert INTO Instructor(ins_id, last name, first name, city, country)
+     VALUES (5, 'Doe', 'John', 'Sydney', 'AU'), (6, 'Doe', 'Jane', 'Dhaka', 'BD');
+
+Q3 : Insert a new instructor record with id 7 for Antonio Cangino who lives in Vancouver,CA into the "Instructor" table
+A3 : INSERT INTO Instructor(ins_id, last name, first name, city, country)
+     VALUES (7, 'Cangino', 'Antonio', 'Vancouver', 'CA');
+
+Q4 : Insert two new instructor records into the "instructor" table. First record with id 8 for Steve Ryan who lives in Barlby,GB.
+     Second record with id 9 for Ramesh Sannareddy who lives in Hyderabad,IN.
+A4 : Insert INTO Instructor(ins_id, last name, first name, city, country)
+     VALUES (8, 'Ryan', 'Steve', 'Barbly', 'GB'), (9, 'Sannareddy', 'Ramesh', 'Hyserabad', 'IN');
+
+UPDATE
+
+UPDATE - which is used to update the data in existing rows in the table
+
+Syntax for UPDTE statement
+
+UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+
+Q1 : Update the city for Sandip to Toronto
+A1 : UPDATE Instructor SET city = 'Toronto' where first name = 'Sandip';
+
+Q2 : Update the city and country for Doe with id 5 to Dubai and AE respectively
+A2 : UPDATE Instructor SET city = 'Dubai', country = 'AE' where ins_id = 5;
+
+Q3 : Update the city of the instructor record to Markham whose id is 1
+A3 : UPDATE Instructor SET city = 'Markham' where ins_id = 1;
+
+Q4 : Update the city and country for Sandip with id 4 to Dhaka and BD respectively
+A4 : UPDATE Instructor SET city = 'Dhaka', country = 'BD' where ins_id = 4;
+
+DELETE
+
+DELETE - which is used to remove from a table
+
+Syntax of DELETE statement 
+
+DELETE FROM table_name where condition;
+
+Q1 : Remove the instructor record of DOe whose id is 6
+A1 : DELETE from Instructor where ins_id = 6;
+
+Q2 : Remove the instructor record of Hima
+A2 : DELETE from Instructor where first_name = 'Hima';
+

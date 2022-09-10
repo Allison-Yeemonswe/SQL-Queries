@@ -1,0 +1,15 @@
+Random SQL Queries
+Q1: Increase income of all employees by 5% in a table.
+A1: UPDATE Employees SET income = income + (income * 5.0/100.0);
+
+Q2: Find names of employees starting with 'A'.
+A2: SELECT first_name FROM Employees WHERE first_naame LIKE 'A%';
+
+Q3: Find numbers of employees working in department 'ABC'.
+A3: SELECT COUNT(*) FROM Empoyees WHERE department_name = 'ABC';
+
+Q4: Print details of employees whose first_name ends with 'A' and contains 6 alphabets.
+A4: SELECT * FROM Employees WHERE first_name LIKE '-----A';
+
+Q5: Print details of employees whose salary lies between 10000 and 50000.
+A5: SELECT * FROM Employees WHERE Salary BETWEEN 10000 and 50000;
